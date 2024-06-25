@@ -4,6 +4,10 @@
  */
 package proyectocrud;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 /**
  *
  * @author meli
@@ -14,6 +18,17 @@ public class Gui extends javax.swing.JFrame {
      * Creates new form Gui
      */
     public Gui() {
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
     }
 
@@ -31,9 +46,11 @@ public class Gui extends javax.swing.JFrame {
         statsPanel = new javax.swing.JPanel();
         msgPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(28, 28, 28));
+        setMaximumSize(getPreferredSize());
         setMinimumSize(getPreferredSize());
         setSize(getPreferredSize());
 
@@ -46,7 +63,7 @@ public class Gui extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(235, 219, 178));
         jLabel1.setText("Informatica Blog Dashboard");
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 28, -1, -1));
+        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         statsPanel.setBackground(new java.awt.Color(60, 56, 54));
         statsPanel.setForeground(new java.awt.Color(29, 32, 33));
@@ -100,6 +117,12 @@ public class Gui extends javax.swing.JFrame {
 
         mainPanel.add(topPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 221, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(50, 48, 47));
+        jButton1.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(168, 153, 132));
+        jButton1.setText("CREATE NEW");
+        mainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,6 +173,7 @@ public class Gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel msgPanel;
