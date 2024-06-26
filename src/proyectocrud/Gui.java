@@ -1,5 +1,7 @@
 package proyectocrud;
 
+import java.awt.AWTEventMulticaster;
+import java.awt.event.WindowAdapter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -11,13 +13,7 @@ public class Gui extends javax.swing.JFrame {
     public Gui() {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -152,13 +148,13 @@ public class Gui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listButtonActionPerformed
-        // TODO add your handling code here:
+        Read r = new Read();
+        r.setVisible(true);
     }//GEN-LAST:event_listButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        this.dispose();
-        Create a = new Create();
-        a.setVisible(true);
+        Create c = new Create();
+        c.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 
     public static void main(String args[]) {

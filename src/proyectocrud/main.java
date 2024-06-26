@@ -1,10 +1,5 @@
 package proyectocrud;
 
-import javax.swing.UIManager;
-/**
- *
- * @author meli
- */
 public class main {
 
     /**
