@@ -1,24 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package proyectocrud;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-/**
- *
- * @author meli
- */
+
 public class Gui extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Gui
-     */
     public Gui() {
-        try {
+        /*try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
@@ -28,7 +18,7 @@ public class Gui extends javax.swing.JFrame {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
         initComponents();
     }
 
@@ -47,6 +37,7 @@ public class Gui extends javax.swing.JFrame {
         msgPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(28, 28, 28));
@@ -63,7 +54,7 @@ public class Gui extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(235, 219, 178));
         jLabel1.setText("Informatica Blog Dashboard");
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
+        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         statsPanel.setBackground(new java.awt.Color(60, 56, 54));
         statsPanel.setForeground(new java.awt.Color(29, 32, 33));
@@ -73,11 +64,11 @@ public class Gui extends javax.swing.JFrame {
         statsPanel.setLayout(statsPanelLayout);
         statsPanelLayout.setHorizontalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         statsPanelLayout.setVerticalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 130, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         mainPanel.add(statsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 71, -1, -1));
@@ -90,7 +81,7 @@ public class Gui extends javax.swing.JFrame {
         msgPanel.setLayout(msgPanelLayout);
         msgPanelLayout.setHorizontalGroup(
             msgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         msgPanelLayout.setVerticalGroup(
             msgPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,20 +99,40 @@ public class Gui extends javax.swing.JFrame {
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 240, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         mainPanel.add(topPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 221, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(50, 48, 47));
+        jButton1.setBackground(new java.awt.Color(29, 32, 33));
         jButton1.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(168, 153, 132));
-        jButton1.setText("CREATE NEW");
-        mainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/list.png"))); // NOI18N
+        jButton1.setText("ARTICULOS");
+        jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        mainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 30));
+
+        jButton2.setBackground(new java.awt.Color(29, 32, 33));
+        jButton2.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(168, 153, 132));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/add-files-to-archive-symbolic.svg.png"))); // NOI18N
+        jButton2.setText("CREATE NEW");
+        jButton2.setFocusPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        mainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,6 +148,14 @@ public class Gui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -147,12 +166,7 @@ public class Gui extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(Gui.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -174,6 +188,7 @@ public class Gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel msgPanel;
