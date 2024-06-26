@@ -1,9 +1,7 @@
 package proyectocrud;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import proyectocrud.CRUD.Create;
 
 public class Gui extends javax.swing.JFrame {
 
@@ -124,7 +122,7 @@ public class Gui extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(29, 32, 33));
         jButton2.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(168, 153, 132));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/add-files-to-archive-symbolic.svg.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/create.png"))); // NOI18N
         jButton2.setText("CREATE NEW");
         jButton2.setFocusPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +151,11 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Create a = new Create();
+        a.setVisible(true);
+        a.setVisible(rootPaneCheckingEnabled);
+        a.show();
+        this.getContentPane().add(a);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
