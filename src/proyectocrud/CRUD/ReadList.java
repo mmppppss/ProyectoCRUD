@@ -1,5 +1,10 @@
 package proyectocrud.CRUD;
 
+import DB.APIDB;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
 /**
  *
  * @author mmppppss
@@ -9,10 +14,23 @@ public class ReadList extends javax.swing.JFrame {
     /**
      * Creates new form Read
      */
+    APIDB aaa;
     public ReadList() {
+        aaa = new APIDB();
         initComponents();
+        listArts();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
+    }
+    public void listArts(){
+        String list[][] = aaa.getArts();
+        for (String[] tupla : list) {
+            JPanel tempPanel = new JPanel();
+            JLabel title = new JLabel(tupla[0]);
+            tempPanel.add(title);
+            tempPanel.setVisible(true);
+            listPanel.add(tempPanel);
+        }
+            pack();
     }
 
     /**
@@ -28,8 +46,8 @@ public class ReadList extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
+        listPanel = new javax.swing.JPanel();
+        elementPanel = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         viewButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
@@ -62,13 +80,13 @@ public class ReadList extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(60, 56, 54));
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jPanel2.setBackground(new java.awt.Color(60, 56, 54));
+        listPanel.setBackground(new java.awt.Color(60, 56, 54));
 
-        jPanel3.setBackground(new java.awt.Color(80, 73, 69));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        elementPanel.setBackground(new java.awt.Color(80, 73, 69));
+        elementPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setText("title");
-        jPanel3.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 11, 330, 30));
+        elementPanel.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 11, 330, 30));
 
         viewButton.setBackground(new java.awt.Color(29, 32, 33));
         viewButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
@@ -81,7 +99,7 @@ public class ReadList extends javax.swing.JFrame {
                 viewButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(viewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 80, 30));
+        elementPanel.add(viewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 80, 30));
 
         deleteButton.setBackground(new java.awt.Color(29, 32, 33));
         deleteButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
@@ -94,7 +112,7 @@ public class ReadList extends javax.swing.JFrame {
                 deleteButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 30));
+        elementPanel.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 30));
 
         editButton.setBackground(new java.awt.Color(29, 32, 33));
         editButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
@@ -107,28 +125,36 @@ public class ReadList extends javax.swing.JFrame {
                 editButtonActionPerformed(evt);
             }
         });
-        jPanel3.add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, 30));
+        elementPanel.add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, 30));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+        javax.swing.GroupLayout listPanelLayout = new javax.swing.GroupLayout(listPanel);
+        listPanel.setLayout(listPanelLayout);
+        listPanelLayout.setHorizontalGroup(
+            listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 690, Short.MAX_VALUE)
+            .addGroup(listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(listPanelLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(elementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 529, Short.MAX_VALUE))
+        listPanelLayout.setVerticalGroup(
+            listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 386, Short.MAX_VALUE)
+            .addGroup(listPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(listPanelLayout.createSequentialGroup()
+                    .addGap(168, 168, 168)
+                    .addComponent(elementPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(169, Short.MAX_VALUE)))
         );
 
-        jScrollPane1.setViewportView(jPanel2);
+        jScrollPane1.setViewportView(listPanel);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
@@ -233,10 +259,10 @@ public class ReadList extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JButton editButton;
+    private javax.swing.JPanel elementPanel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel listPanel;
     private javax.swing.JLabel logo;
     private javax.swing.JLabel title;
     private javax.swing.JButton viewButton;
