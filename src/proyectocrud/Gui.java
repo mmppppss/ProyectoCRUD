@@ -148,7 +148,7 @@ public class Gui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listButtonActionPerformed
-        Read r = new Read();
+        ReadList r = new ReadList();
         r.setVisible(true);
     }//GEN-LAST:event_listButtonActionPerformed
 

@@ -28,103 +28,53 @@ public class Read extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
-        addButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
-        viewButton = new javax.swing.JButton();
-        addButton2 = new javax.swing.JButton();
-        addButton3 = new javax.swing.JButton();
+        contenidoArea = new javax.swing.JTextArea();
+        categoriaView = new javax.swing.JLabel();
+        categoriaView1 = new javax.swing.JLabel();
+        editButton = new javax.swing.JButton();
+        categoriaView2 = new javax.swing.JLabel();
+        categoriaView3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(40, 40, 40));
         jPanel1.setForeground(new java.awt.Color(251, 241, 199));
         jPanel1.setMaximumSize(new java.awt.Dimension(720, 480));
         jPanel1.setMinimumSize(new java.awt.Dimension(720, 480));
-        jPanel1.setPreferredSize(new java.awt.Dimension(720, 480));
 
         logo.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
         logo.setForeground(new java.awt.Color(235, 219, 178));
         logo.setText("Informatica Blog Dashboard");
 
-        addButton.setBackground(new java.awt.Color(29, 32, 33));
-        addButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        addButton.setForeground(new java.awt.Color(168, 153, 132));
-        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/create.png"))); // NOI18N
-        addButton.setText("CREATE NEW");
-        addButton.setFocusPainted(false);
-        addButton.addActionListener(new java.awt.event.ActionListener() {
+        contenidoArea.setEditable(false);
+        contenidoArea.setBackground(new java.awt.Color(60, 56, 54));
+        contenidoArea.setColumns(20);
+        contenidoArea.setRows(5);
+        contenidoArea.setPreferredSize(new java.awt.Dimension(272, 100));
+        jScrollPane1.setViewportView(contenidoArea);
+
+        categoriaView.setForeground(getForeground());
+        categoriaView.setText("CATEGORIA");
+
+        categoriaView1.setText("TITLE");
+
+        editButton.setBackground(new java.awt.Color(29, 32, 33));
+        editButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        editButton.setForeground(new java.awt.Color(168, 153, 132));
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/edit.png"))); // NOI18N
+        editButton.setText("EDITAR");
+        editButton.setFocusPainted(false);
+        editButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                editButtonActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setBackground(new java.awt.Color(60, 56, 54));
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        categoriaView2.setText("AUTHOR");
 
-        jPanel2.setBackground(new java.awt.Color(60, 56, 54));
-
-        jPanel3.setBackground(new java.awt.Color(80, 73, 69));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        title.setText("title");
-        jPanel3.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 11, 330, 30));
-
-        viewButton.setBackground(new java.awt.Color(29, 32, 33));
-        viewButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        viewButton.setForeground(new java.awt.Color(168, 153, 132));
-        viewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png"))); // NOI18N
-        viewButton.setText("VER");
-        viewButton.setFocusPainted(false);
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(viewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 80, 30));
-
-        addButton2.setBackground(new java.awt.Color(29, 32, 33));
-        addButton2.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        addButton2.setForeground(new java.awt.Color(168, 153, 132));
-        addButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/delete.png"))); // NOI18N
-        addButton2.setText("BORRAR");
-        addButton2.setFocusPainted(false);
-        addButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButton2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(addButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 30));
-
-        addButton3.setBackground(new java.awt.Color(29, 32, 33));
-        addButton3.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        addButton3.setForeground(new java.awt.Color(168, 153, 132));
-        addButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/edit.png"))); // NOI18N
-        addButton3.setText("EDITAR");
-        addButton3.setFocusPainted(false);
-        addButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButton3ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(addButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, 30));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 529, Short.MAX_VALUE))
-        );
-
-        jScrollPane1.setViewportView(jPanel2);
+        categoriaView3.setText("DATE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,11 +83,24 @@ public class Read extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(logo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(addButton)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(logo)
+                                .addGap(0, 181, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(categoriaView1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(categoriaView, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editButton)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(categoriaView2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(categoriaView3, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,54 +109,28 @@ public class Read extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logo)
-                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(categoriaView)
+                    .addComponent(categoriaView1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(categoriaView2)
+                    .addComponent(categoriaView3))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        Create c = new Create();
-        c.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_addButtonActionPerformed
-
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        Create c = new Create();
-        c.setVisible(true);
-    }//GEN-LAST:event_viewButtonActionPerformed
-
-    private void addButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton2ActionPerformed
+    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addButton2ActionPerformed
-
-    private void addButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addButton3ActionPerformed
+    }//GEN-LAST:event_editButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,15 +168,14 @@ public class Read extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
-    private javax.swing.JButton addButton2;
-    private javax.swing.JButton addButton3;
+    private javax.swing.JLabel categoriaView;
+    private javax.swing.JLabel categoriaView1;
+    private javax.swing.JLabel categoriaView2;
+    private javax.swing.JLabel categoriaView3;
+    private javax.swing.JTextArea contenidoArea;
+    private javax.swing.JButton editButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo;
-    private javax.swing.JLabel title;
-    private javax.swing.JButton viewButton;
     // End of variables declaration//GEN-END:variables
 }
