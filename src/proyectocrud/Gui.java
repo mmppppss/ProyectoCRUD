@@ -1,12 +1,15 @@
 package proyectocrud;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
-import proyectocrud.CRUD.Create;
+import javax.swing.UnsupportedLookAndFeelException;
+import proyectocrud.CRUD.*;
 
 public class Gui extends javax.swing.JFrame {
 
     public Gui() {
-        /*try {
+        try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
@@ -16,8 +19,10 @@ public class Gui extends javax.swing.JFrame {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Gui.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
+
         initComponents();
+        setResizable(false);
     }
 
     /**
@@ -30,12 +35,12 @@ public class Gui extends javax.swing.JFrame {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         statsPanel = new javax.swing.JPanel();
         msgPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        listButton = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(28, 28, 28));
@@ -49,10 +54,10 @@ public class Gui extends javax.swing.JFrame {
         mainPanel.setPreferredSize(new java.awt.Dimension(720, 480));
         mainPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(235, 219, 178));
-        jLabel1.setText("Informatica Blog Dashboard");
-        mainPanel.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        logo.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
+        logo.setForeground(new java.awt.Color(235, 219, 178));
+        logo.setText("Informatica Blog Dashboard");
+        mainPanel.add(logo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         statsPanel.setBackground(new java.awt.Color(60, 56, 54));
         statsPanel.setForeground(new java.awt.Color(29, 32, 33));
@@ -106,31 +111,31 @@ public class Gui extends javax.swing.JFrame {
 
         mainPanel.add(topPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 221, -1, -1));
 
-        jButton1.setBackground(new java.awt.Color(29, 32, 33));
-        jButton1.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(168, 153, 132));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/list.png"))); // NOI18N
-        jButton1.setText("ARTICULOS");
-        jButton1.setFocusPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        listButton.setBackground(new java.awt.Color(29, 32, 33));
+        listButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        listButton.setForeground(new java.awt.Color(168, 153, 132));
+        listButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/list.png"))); // NOI18N
+        listButton.setText("ARTICULOS");
+        listButton.setFocusPainted(false);
+        listButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                listButtonActionPerformed(evt);
             }
         });
-        mainPanel.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 30));
+        mainPanel.add(listButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, 30));
 
-        jButton2.setBackground(new java.awt.Color(29, 32, 33));
-        jButton2.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(168, 153, 132));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/create.png"))); // NOI18N
-        jButton2.setText("CREATE NEW");
-        jButton2.setFocusPainted(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setBackground(new java.awt.Color(29, 32, 33));
+        addButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        addButton.setForeground(new java.awt.Color(168, 153, 132));
+        addButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/create.png"))); // NOI18N
+        addButton.setText("CREATE NEW");
+        addButton.setFocusPainted(false);
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
-        mainPanel.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 30));
+        mainPanel.add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 20, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,21 +151,16 @@ public class Gui extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void listButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_listButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        this.dispose();
         Create a = new Create();
         a.setVisible(true);
-        a.setVisible(rootPaneCheckingEnabled);
-        a.show();
-        this.getContentPane().add(a);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -180,7 +180,7 @@ public class Gui extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Createold and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Gui().setVisible(true);
@@ -189,9 +189,9 @@ public class Gui extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton listButton;
+    private javax.swing.JLabel logo;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel msgPanel;
     private javax.swing.JPanel statsPanel;

@@ -1,6 +1,9 @@
 package proyectocrud.CRUD;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -9,9 +12,20 @@ import javax.swing.UIManager;
 public class Create extends javax.swing.JFrame {
 
     public Create() {
-        
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
     }
 
     /**
@@ -29,7 +43,7 @@ public class Create extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         titleField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        contenidoArea = new javax.swing.JTextArea();
         authorFiled = new javax.swing.JTextField();
         categoriaList = new javax.swing.JComboBox<>();
         descripcionField = new javax.swing.JTextField();
@@ -76,12 +90,13 @@ public class Create extends javax.swing.JFrame {
         titleField.setForeground(getForeground());
         titleField.setToolTipText("Titulo del Articulo");
 
-        jTextArea1.setBackground(new java.awt.Color(60, 56, 54));
-        jTextArea1.setColumns(20);
-        jTextArea1.setForeground(getForeground());
-        jTextArea1.setRows(5);
-        jTextArea1.setPreferredSize(new java.awt.Dimension(272, 100));
-        jScrollPane1.setViewportView(jTextArea1);
+        contenidoArea.setBackground(new java.awt.Color(60, 56, 54));
+        contenidoArea.setColumns(20);
+        contenidoArea.setForeground(getForeground());
+        contenidoArea.setRows(5);
+        contenidoArea.setDisabledTextColor(contenidoArea.getForeground());
+        contenidoArea.setPreferredSize(new java.awt.Dimension(272, 100));
+        jScrollPane1.setViewportView(contenidoArea);
 
         authorFiled.setBackground(new java.awt.Color(60, 56, 54));
         authorFiled.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
@@ -189,10 +204,10 @@ public class Create extends javax.swing.JFrame {
     private javax.swing.JTextField authorFiled;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> categoriaList;
+    private javax.swing.JTextArea contenidoArea;
     private javax.swing.JTextField descripcionField;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel logo;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField titleField;
