@@ -1,5 +1,8 @@
 package proyectocrud.CRUD;
 
+import java.awt.FlowLayout;
+import javax.swing.*;
+
 /**
  *
  * @author mmppppss
@@ -10,11 +13,68 @@ public class ReadList extends javax.swing.JFrame {
      * Creates new form Read
      */
     public ReadList() {
+        this.setResizable(false);
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
+        BoxLayout a  = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
+        mainPanel.setLayout(a);
+        addArticlePanel("hola");
+        addArticlePanel("holaaa2");
     }
+    private void makelist(){
+        
+    }
+    private void addArticlePanel(String title) {
+        JPanel articlePanel = new JPanel();
+        articlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+        articlePanel.setSize(655, 40);
+        articlePanel.setPreferredSize(articlePanel.getSize());
+        articlePanel.setMinimumSize(articlePanel.getSize());
+        articlePanel.setMaximumSize(articlePanel.getSize());
+        articlePanel.setBackground(new java.awt.Color(80, 73, 69));
+        JLabel titleLabel = new JLabel(title);
+        articlePanel.add(titleLabel);
 
+        JButton viewButton = new JButton("VER");
+        JButton editButton = new JButton("EDITAR");
+        JButton deleteButton = new JButton("BORRAR");
+
+        viewButton.setBackground(new java.awt.Color(29, 32, 33));
+        viewButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        viewButton.setForeground(new java.awt.Color(168, 153, 132));
+        viewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png"))); // NOI18N
+        viewButton.setFocusPainted(false);
+        viewButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            System.out.println("view");
+        });
+        editButton.setBackground(new java.awt.Color(29, 32, 33));
+        editButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        editButton.setForeground(new java.awt.Color(168, 153, 132));
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/edit.png"))); // NOI18N
+        editButton.setText("EDITAR");
+        editButton.setFocusPainted(false);
+        editButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            System.out.println("edit");
+        });
+        deleteButton.setBackground(new java.awt.Color(29, 32, 33));
+        deleteButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        deleteButton.setForeground(new java.awt.Color(168, 153, 132));
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/delete.png"))); // NOI18N
+        deleteButton.setText("BORRAR");
+        deleteButton.setFocusPainted(false);
+        deleteButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            System.out.println("delete");
+        });
+        
+        articlePanel.add(viewButton);
+        articlePanel.add(editButton);
+        articlePanel.add(deleteButton);
+
+        mainPanel.add(articlePanel);
+        mainPanel.add(Box.createVerticalStrut(15)); // Adding vertical space between panels
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,13 +87,8 @@ public class ReadList extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        title = new javax.swing.JLabel();
-        viewButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
-        editButton = new javax.swing.JButton();
+        scrollPanel = new javax.swing.JScrollPane();
+        mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,70 +114,15 @@ public class ReadList extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setBackground(new java.awt.Color(60, 56, 54));
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanel.setBackground(new java.awt.Color(60, 56, 54));
+        scrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanel.setPreferredSize(new java.awt.Dimension(680, 640));
 
-        jPanel2.setBackground(new java.awt.Color(60, 56, 54));
-
-        jPanel3.setBackground(new java.awt.Color(80, 73, 69));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        title.setText("title");
-        jPanel3.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 11, 330, 30));
-
-        viewButton.setBackground(new java.awt.Color(29, 32, 33));
-        viewButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        viewButton.setForeground(new java.awt.Color(168, 153, 132));
-        viewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png"))); // NOI18N
-        viewButton.setText("VER");
-        viewButton.setFocusPainted(false);
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(viewButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, 80, 30));
-
-        deleteButton.setBackground(new java.awt.Color(29, 32, 33));
-        deleteButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        deleteButton.setForeground(new java.awt.Color(168, 153, 132));
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/delete.png"))); // NOI18N
-        deleteButton.setText("BORRAR");
-        deleteButton.setFocusPainted(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, -1, 30));
-
-        editButton.setBackground(new java.awt.Color(29, 32, 33));
-        editButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        editButton.setForeground(new java.awt.Color(168, 153, 132));
-        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/edit.png"))); // NOI18N
-        editButton.setText("EDITAR");
-        editButton.setFocusPainted(false);
-        editButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
-            }
-        });
-        jPanel3.add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 10, -1, 30));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 529, Short.MAX_VALUE))
-        );
-
-        jScrollPane1.setViewportView(jPanel2);
+        mainPanel.setBackground(new java.awt.Color(60, 56, 54));
+        mainPanel.setMaximumSize(new java.awt.Dimension(670, 670));
+        mainPanel.setMinimumSize(new java.awt.Dimension(670, 50));
+        mainPanel.setPreferredSize(new java.awt.Dimension(670, 653));
+        scrollPanel.setViewportView(mainPanel);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -131,7 +131,7 @@ public class ReadList extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
+                    .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(logo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,7 +146,7 @@ public class ReadList extends javax.swing.JFrame {
                     .addComponent(logo)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -163,7 +163,7 @@ public class ReadList extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 483, Short.MAX_VALUE)
+            .addGap(0, 480, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -179,19 +179,6 @@ public class ReadList extends javax.swing.JFrame {
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addButtonActionPerformed
-
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        Read r= new Read();
-        r.setVisible(true);
-    }//GEN-LAST:event_viewButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        new Delete(this, rootPaneCheckingEnabled).setVisible(true);
-    }//GEN-LAST:event_deleteButtonActionPerformed
-
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,14 +218,9 @@ public class ReadList extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
-    private javax.swing.JButton deleteButton;
-    private javax.swing.JButton editButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel logo;
-    private javax.swing.JLabel title;
-    private javax.swing.JButton viewButton;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.JScrollPane scrollPanel;
     // End of variables declaration//GEN-END:variables
 }
