@@ -2,7 +2,7 @@ package proyectocrud.CRUD;
 
 import java.awt.FlowLayout;
 import javax.swing.*;
-
+import DB.APIDB;
 /**
  *
  * @author mmppppss
@@ -12,14 +12,26 @@ public class ReadList extends javax.swing.JFrame {
     /**
      * Creates new form Read
      */
+    APIDB aaa;
     public ReadList() {
         this.setResizable(false);
+        aaa = new APIDB();
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         BoxLayout a  = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
         mainPanel.setLayout(a);
         addArticlePanel("hola");
         addArticlePanel("holaaa2");
+    }
+    public void listArts(){
+        String list[][] = aaa.getArts();
+        for (String[] tupla : list) {
+            JPanel tempPanel = new JPanel();
+            JLabel title = new JLabel(tupla[0]);
+            tempPanel.add(title);
+            tempPanel.setVisible(true);
+        }
+            pack();
     }
     private void makelist(){
         
@@ -90,6 +102,7 @@ public class ReadList extends javax.swing.JFrame {
         scrollPanel = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
 
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(40, 40, 40));
@@ -123,12 +136,11 @@ public class ReadList extends javax.swing.JFrame {
         mainPanel.setMinimumSize(new java.awt.Dimension(670, 50));
         mainPanel.setPreferredSize(new java.awt.Dimension(670, 653));
         scrollPanel.setViewportView(mainPanel);
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(scrollPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
