@@ -1,7 +1,6 @@
 package proyectocrud;
 
-import java.awt.AWTEventMulticaster;
-import java.awt.event.WindowAdapter;
+import DB.APIDB;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -9,8 +8,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 import proyectocrud.CRUD.*;
 
 public class Gui extends javax.swing.JFrame {
-
-    public Gui() {
+    APIDB api;
+    public Gui(APIDB databaseAPI) {
+        this.api=databaseAPI;
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
@@ -148,7 +148,7 @@ public class Gui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listButtonActionPerformed
-        ReadList r = new ReadList();
+        ReadList r = new ReadList(api);
         r.setVisible(true);
     }//GEN-LAST:event_listButtonActionPerformed
 
@@ -179,7 +179,7 @@ public class Gui extends javax.swing.JFrame {
         /* Createold and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Gui().setVisible(true);
+                new Gui(new APIDB()).setVisible(true);
             }
         });
     }
