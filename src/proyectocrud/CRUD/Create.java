@@ -14,14 +14,26 @@ public class Create extends javax.swing.JFrame {
     APIDB api;
     public Create(APIDB databaseAPI) {
         api= databaseAPI;
+        
+        boolean admin = (boolean) api.getUser()[1];
+        System.out.println(admin);
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
             Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         initComponents();
+        if(!admin){
+            this.disable();
+        }
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        titleField.setText("Titulo");
+        contenidoArea.setText("Contenido");
+        authorFiled.setText((String) api.getUser()[0]);
+        descripcionField.setText("Descripcion");
+        
     }
 
     /**
@@ -83,8 +95,10 @@ public class Create extends javax.swing.JFrame {
 
         titleField.setBackground(new java.awt.Color(60, 56, 54));
         titleField.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
-        titleField.setForeground(getForeground());
+        titleField.setForeground(new java.awt.Color(235, 219, 178));
         titleField.setToolTipText("Titulo del Articulo");
+        titleField.setDisabledTextColor(new java.awt.Color(235, 219, 178));
+        titleField.setOpaque(true);
 
         contenidoArea.setBackground(new java.awt.Color(60, 56, 54));
         contenidoArea.setColumns(20);
@@ -98,6 +112,7 @@ public class Create extends javax.swing.JFrame {
         authorFiled.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         authorFiled.setForeground(getForeground());
         authorFiled.setToolTipText("Titulo del Articulo");
+        authorFiled.setOpaque(true);
 
         categoriaList.setBackground(new java.awt.Color(60, 56, 54));
         categoriaList.setForeground(getForeground());
@@ -108,6 +123,7 @@ public class Create extends javax.swing.JFrame {
         descripcionField.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         descripcionField.setForeground(getForeground());
         descripcionField.setToolTipText("Titulo del Articulo");
+        descripcionField.setOpaque(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -161,7 +177,11 @@ public class Create extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        String[] args={titleField.getText(), contenidoArea.getText(), "1"};
+        System.out.println();
+        String[] args={titleField.getText(),
+            contenidoArea.getText(),
+            "1",
+            ""+(categoriaList.getSelectedIndex()+1)};
         api.create(args);
     }//GEN-LAST:event_saveButtonActionPerformed
 

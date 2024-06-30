@@ -169,10 +169,14 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Source Code Pro" size="14" style="0"/>
             </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection component="Form" name="foreground" type="property"/>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="db" red="eb" type="rgb"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Titulo del Articulo"/>
+            <Property name="disabledTextColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="b2" green="db" red="eb" type="rgb"/>
+            </Property>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -214,6 +218,7 @@
               <Connection component="Form" name="foreground" type="property"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Titulo del Articulo"/>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="categoriaList">
@@ -252,6 +257,7 @@
               <Connection component="Form" name="foreground" type="property"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Titulo del Articulo"/>
+            <Property name="opaque" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>

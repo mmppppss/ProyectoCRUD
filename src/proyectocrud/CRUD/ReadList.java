@@ -3,6 +3,8 @@ package proyectocrud.CRUD;
 import java.awt.FlowLayout;
 import javax.swing.*;
 import DB.APIDB;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author mmppppss
@@ -17,9 +19,15 @@ public class ReadList extends javax.swing.JFrame {
         this.setResizable(false);
         api = databaseAPI;
         initComponents();
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+        }
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         BoxLayout a  = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
         mainPanel.setLayout(a);
+        addButton.setVisible((boolean)api.getUser()[1]);
         makelist();
     }
     private void makelist(){
@@ -74,11 +82,12 @@ public class ReadList extends javax.swing.JFrame {
             this.dispose();
             new ReadList(api).setVisible(true);
         });
-        
+        boolean admin = (boolean) api.getUser()[1];
+        if(admin){
+            articlePanel.add(editButton);
+            articlePanel.add(deleteButton);
+        }
         articlePanel.add(viewButton);
-        articlePanel.add(editButton);
-        articlePanel.add(deleteButton);
-
         mainPanel.add(articlePanel);
         mainPanel.add(Box.createVerticalStrut(15)); // Adding vertical space between panels
         mainPanel.revalidate();

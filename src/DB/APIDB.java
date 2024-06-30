@@ -14,18 +14,28 @@ import java.util.logging.Logger;
  */
 public class APIDB {
     private Database DB;
-
+    private Object[] user={"null", false};
     public APIDB() {
         DB = new Database();
         DB.Connect();
     }
+
+    public Object[] getUser() {
+        return user;
+    }
     
     public boolean login(String username, String passwd){
-        String query = "SELECT \"hashPasswd\" FROM users where username=?;";
+        String query = "SELECT \"hashPasswd\", admin FROM users where username=?;";
         ResultSet res = DB.query(query, new String[]{username});
         try {
             res.next();
-            return res.getString("hashPasswd").equals(hashMD5(passwd));
+            if(res.getString("hashPasswd").equals(hashMD5(passwd))){
+               this.user[0] = username;
+               this.user[1] = res.getBoolean("admin");
+               return true;
+            }else{
+                return false;
+            }
         } catch (SQLException ex) {
             System.out.println("Error al logearse");
             Logger.getLogger(APIDB.class.getName()).log(Level.SEVERE, null, ex);
@@ -54,8 +64,8 @@ public class APIDB {
         return Result;
     }
     public String[] read(String idART){
-        String id, title, content, date, author;
-        String query = "SELECT art.*, author.username from \"Article\" art, users author where author.\"ID\" = art.\"ID_Author\" and art.\"ID\"="+idART;
+        String id, title, content, date, author, category;
+        String query = "SELECT art.*, author.username, categories.name from \"Article\" art, users author, categories where author.\"ID\" = art.\"ID_Author\" and categories.id = art.\"ID_category\" and art.\"ID\"="+idART;
         ResultSet res = DB.query(query);
         try {
             res.next();
@@ -64,7 +74,8 @@ public class APIDB {
             content = res.getString("content");
             date = res.getString("date");
             author = res.getString("username");
-            String[] tupla={id, title, content, date, author};
+            category =  res.getString("name");
+            String[] tupla={id, title, content, date, author, category};
             return tupla;
         } catch (SQLException ex) {
             String[] tupla={"-1", "NOT FOUND", "El articulo no existe", "00-00-00", "null"};
@@ -77,7 +88,7 @@ public class APIDB {
         DB.query(query);
     }
     public void create(String[] args){
-        String query="INSERT INTO \"Article\" (title, content, date, \"ID_Author\") VALUES(?,?,'now()', CAST(? AS int));";
+        String query="INSERT INTO \"Article\" (title, content, date, \"ID_Author\", \"ID_category\") VALUES(?,?,'now()', CAST(? AS int), CAST(? AS int));";
         DB.query(query, args);
     }
     public String hashMD5(String input){

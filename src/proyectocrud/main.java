@@ -11,9 +11,9 @@ public class main {
     public static void main(String[] args) {
         
         APIDB api = new APIDB();
-        String[] args2 = {"jla","contenido","1"};
-        api.create(args2);
-        //new Gui(api).setVisible(true);
+        //System.out.println(api.hashMD5("222106867mps"));
+        api.login("mmppppss", "222106867ms");
+        new Gui(api).setVisible(true);
         
     }
     

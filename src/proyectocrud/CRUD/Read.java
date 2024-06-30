@@ -5,6 +5,10 @@
 package proyectocrud.CRUD;
 
 import DB.APIDB;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -19,19 +23,25 @@ public class Read extends javax.swing.JFrame {
     String id;
     public Read(APIDB databaseAPI, String idART){
         setResizable(false);
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         initComponents();
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(Create.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         api=databaseAPI;
         id=idART;
         readArt();
+        editButton.setVisible((boolean)api.getUser()[1]);
     }
     private void readArt(){
         String[] tupla=api.read(id);
         titleView.setText(tupla[1]);
         contenidoArea.setText(tupla[2]);
-        dateView.setText(tupla[3]);
-        authorView.setText(tupla[4]);
-        categoriaView.setText("null");
+        dateView.setText("FECHA: "+tupla[3]);
+        authorView.setText("AUTOR: "+tupla[4]);
+        categoriaView.setText("CATEGORIA: "+tupla[5]);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -67,13 +77,18 @@ public class Read extends javax.swing.JFrame {
         contenidoArea.setEditable(false);
         contenidoArea.setBackground(new java.awt.Color(60, 56, 54));
         contenidoArea.setColumns(20);
+        contenidoArea.setFont(new java.awt.Font("Source Code Pro", 0, 15)); // NOI18N
+        contenidoArea.setForeground(new java.awt.Color(235, 219, 178));
+        contenidoArea.setLineWrap(true);
         contenidoArea.setRows(5);
-        contenidoArea.setPreferredSize(new java.awt.Dimension(272, 100));
         jScrollPane1.setViewportView(contenidoArea);
 
-        categoriaView.setForeground(getForeground());
+        categoriaView.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        categoriaView.setForeground(new java.awt.Color(235, 219, 178));
         categoriaView.setText("CATEGORIA");
 
+        titleView.setFont(new java.awt.Font("Source Code Pro", 0, 18)); // NOI18N
+        titleView.setForeground(new java.awt.Color(235, 219, 178));
         titleView.setText("TITLE");
 
         editButton.setBackground(new java.awt.Color(29, 32, 33));
@@ -88,8 +103,12 @@ public class Read extends javax.swing.JFrame {
             }
         });
 
+        authorView.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        authorView.setForeground(new java.awt.Color(235, 219, 178));
         authorView.setText("AUTHOR");
 
+        dateView.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        dateView.setForeground(new java.awt.Color(235, 219, 178));
         dateView.setText("DATE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -101,22 +120,19 @@ public class Read extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(logo)
-                                .addGap(0, 181, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(titleView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(categoriaView, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editButton)))
+                        .addComponent(logo)
+                        .addGap(0, 218, Short.MAX_VALUE)
+                        .addComponent(editButton))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(authorView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(dateView, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(dateView, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(titleView, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(categoriaView, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
@@ -178,7 +194,7 @@ public class Read extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Read(new APIDB(), "-1").setVisible(true);
+                new Read(new APIDB(), "1").setVisible(true);
             }
         });
     }
