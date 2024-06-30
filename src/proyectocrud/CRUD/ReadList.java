@@ -12,31 +12,24 @@ public class ReadList extends javax.swing.JFrame {
     /**
      * Creates new form Read
      */
-    APIDB aaa;
-    public ReadList() {
+    APIDB api;
+    public ReadList(APIDB databaseAPI) {
         this.setResizable(false);
-        aaa = new APIDB();
+        api = databaseAPI;
         initComponents();
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         BoxLayout a  = new BoxLayout(mainPanel, BoxLayout.Y_AXIS);
         mainPanel.setLayout(a);
-        addArticlePanel("hola");
-        addArticlePanel("holaaa2");
-    }
-    public void listArts(){
-        String list[][] = aaa.getArts();
-        for (String[] tupla : list) {
-            JPanel tempPanel = new JPanel();
-            JLabel title = new JLabel(tupla[0]);
-            tempPanel.add(title);
-            tempPanel.setVisible(true);
-        }
-            pack();
+        makelist();
     }
     private void makelist(){
-        
+        var list = api.getArts();
+        for (String[] tupla : list) {
+            if(tupla[0]!=null)
+                addArticlePanel(tupla[0], tupla[1]);
+        }
     }
-    private void addArticlePanel(String title) {
+    private void addArticlePanel(String id, String title) {
         JPanel articlePanel = new JPanel();
         articlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         articlePanel.setSize(655, 40);
@@ -57,6 +50,7 @@ public class ReadList extends javax.swing.JFrame {
         viewButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png"))); // NOI18N
         viewButton.setFocusPainted(false);
         viewButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            new Read(api, id).setVisible(true);
             System.out.println("view");
         });
         editButton.setBackground(new java.awt.Color(29, 32, 33));
@@ -75,7 +69,10 @@ public class ReadList extends javax.swing.JFrame {
         deleteButton.setText("BORRAR");
         deleteButton.setFocusPainted(false);
         deleteButton.addActionListener((java.awt.event.ActionEvent evt) -> {
+            new Delete( api,id ,this, rootPaneCheckingEnabled).setVisible(true);
             System.out.println("delete");
+            this.dispose();
+            new ReadList(api).setVisible(true);
         });
         
         articlePanel.add(viewButton);
@@ -187,7 +184,7 @@ public class ReadList extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        Create c = new Create();
+        Create c = new Create(api);
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_addButtonActionPerformed
@@ -223,7 +220,7 @@ public class ReadList extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReadList().setVisible(true);
+                new ReadList(new APIDB()).setVisible(true);
             }
         });
     }

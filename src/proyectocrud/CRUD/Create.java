@@ -1,5 +1,6 @@
 package proyectocrud.CRUD;
 
+import DB.APIDB;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -10,8 +11,9 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author mmppppss
  */
 public class Create extends javax.swing.JFrame {
-
-    public Create() {
+    APIDB api;
+    public Create(APIDB databaseAPI) {
+        api= databaseAPI;
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
@@ -159,7 +161,8 @@ public class Create extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
+        String[] args={titleField.getText(), contenidoArea.getText(), "1"};
+        api.create(args);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -189,7 +192,7 @@ public class Create extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Create().setVisible(true);
+                new Create(new APIDB()).setVisible(true);
             }
         });
     }

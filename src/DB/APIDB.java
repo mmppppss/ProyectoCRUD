@@ -35,16 +35,17 @@ public class APIDB {
     
     public String[][] getArts(){
         String[][] Result=new String[10][4];
-        String title, content, date, author;
+        String id, title, content, date, author;
         String query = "SELECT a.*, u.username from \"Article\" a, users u where u.\"ID\" = a.\"ID_Author\";";
         ResultSet res = DB.query(query);
         try {
             for(int i=0; res.next(); i++){
+                id = res.getString("id");
                 title = res.getString("title");
                 content = res.getString("content");
                 date = res.getString("date");
                 author = res.getString("username");
-                String[] tupla={title, content, date, author};
+                String[] tupla={id, title, content, date, author};
                 Result[i]=tupla;
             }
         } catch (SQLException ex) {
@@ -52,7 +53,33 @@ public class APIDB {
         }
         return Result;
     }
-    
+    public String[] read(String idART){
+        String id, title, content, date, author;
+        String query = "SELECT art.*, author.username from \"Article\" art, users author where author.\"ID\" = art.\"ID_Author\" and art.\"ID\"="+idART;
+        ResultSet res = DB.query(query);
+        try {
+            res.next();
+            id = res.getString("id");
+            title = res.getString("title");
+            content = res.getString("content");
+            date = res.getString("date");
+            author = res.getString("username");
+            String[] tupla={id, title, content, date, author};
+            return tupla;
+        } catch (SQLException ex) {
+            String[] tupla={"-1", "NOT FOUND", "El articulo no existe", "00-00-00", "null"};
+            return tupla;
+        }
+        
+    }
+    public void delete(String idART){
+        String query = "DELETE from \"Article\" where \"ID\"="+idART;
+        DB.query(query);
+    }
+    public void create(String[] args){
+        String query="INSERT INTO \"Article\" (title, content, date, \"ID_Author\") VALUES(?,?,'now()', CAST(? AS int));";
+        DB.query(query, args);
+    }
     public String hashMD5(String input){
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");

@@ -19,6 +19,10 @@ public class Database {
     public Database() {
         System.out.println("DB Inicializada");
     }
+
+    public Connection getCon() {
+        return con;
+    }
     public void Connect(){
         try { 
             Class.forName("org.postgresql.Driver");
@@ -41,12 +45,13 @@ public class Database {
         try {
             PreparedStatement stmt  = con.prepareStatement(sqlQuery);
             for (int i = 0; i < args.length; i++) {
+                System.out.println("Parsing: "+i+" "+args[i]);
                 stmt.setString(i+1, args[i]);
             }
             ResultSet rs = stmt.executeQuery();
             return rs;
         } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
+            System.err.println("[ERROR Database]"+ex.getMessage()+" "+ex.getErrorCode());
             return null;
             //Logger.getLogger(Conection.class.getName()).log(Level.SEVERE, null, ex);
         }

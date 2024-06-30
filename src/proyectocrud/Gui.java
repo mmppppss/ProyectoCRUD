@@ -153,7 +153,7 @@ public class Gui extends javax.swing.JFrame {
     }//GEN-LAST:event_listButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        Create c = new Create();
+        Create c = new Create(api);
         c.setVisible(true);
     }//GEN-LAST:event_addButtonActionPerformed
 

@@ -4,6 +4,8 @@
  */
 package proyectocrud.CRUD;
 
+import DB.APIDB;
+
 /**
  *
  * @author mmppppss
@@ -13,9 +15,14 @@ public class Delete extends javax.swing.JDialog {
     /**
      * Creates new form del
      */
-    public Delete(java.awt.Frame parent, boolean modal) {
+    String id;
+    APIDB api;
+    public Delete(APIDB databaseAPI, String idART, java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        api=databaseAPI;
+        id=idART;
         initComponents();
+        this.setAlwaysOnTop(true);
     }
 
     /**
@@ -110,7 +117,8 @@ public class Delete extends javax.swing.JDialog {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void deleteConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteConfirmButtonActionPerformed
-        // TODO add your handling code here:
+        api.delete(id);
+        this.dispose();
     }//GEN-LAST:event_deleteConfirmButtonActionPerformed
 
     /**
@@ -144,7 +152,7 @@ public class Delete extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Delete dialog = new Delete(new javax.swing.JFrame(), true);
+                Delete dialog = new Delete( null, null, new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
