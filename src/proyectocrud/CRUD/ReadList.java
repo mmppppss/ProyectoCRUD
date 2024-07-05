@@ -46,9 +46,10 @@ public class ReadList extends javax.swing.JFrame {
         articlePanel.setMaximumSize(articlePanel.getSize());
         articlePanel.setBackground(new java.awt.Color(80, 73, 69));
         JLabel titleLabel = new JLabel(title+" | ");
+        titleLabel.setSize(100, 40);
         articlePanel.add(titleLabel);
-        articlePanel.add(new JLabel(cat+" | "));
-        JLabel view = new JLabel(views+" |   ");
+        articlePanel.add(new JLabel(cat.replaceAll(" ", "")+" | "));
+        JLabel view = new JLabel(views+" | ");
         //view.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png")));
         view.setSize(1000, HEIGHT);
         articlePanel.add(view);
@@ -113,7 +114,6 @@ public class ReadList extends javax.swing.JFrame {
         scrollPanel = new javax.swing.JScrollPane();
         mainPanel = new javax.swing.JPanel();
 
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(40, 40, 40));
@@ -139,7 +139,6 @@ public class ReadList extends javax.swing.JFrame {
         });
 
         scrollPanel.setBackground(new java.awt.Color(60, 56, 54));
-        scrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPanel.setPreferredSize(new java.awt.Dimension(680, 640));
 
         mainPanel.setBackground(new java.awt.Color(60, 56, 54));
@@ -147,6 +146,7 @@ public class ReadList extends javax.swing.JFrame {
         mainPanel.setMinimumSize(new java.awt.Dimension(670, 50));
         mainPanel.setPreferredSize(new java.awt.Dimension(670, 653));
         scrollPanel.setViewportView(mainPanel);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
