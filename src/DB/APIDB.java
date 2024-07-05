@@ -25,14 +25,14 @@ public class APIDB {
     }
     
     public boolean login(String username, String passwd){
-        String query = "SELECT \"hashPasswd\", admin, \"ID\" FROM users where username=?;";
+        String query = "SELECT hash_passwd, admin, id FROM users where username=?;";
         ResultSet res = DB.query(query, new String[]{username});
         try {
             res.next();
-            if(res.getString("hashPasswd").equals(hashMD5(passwd))){
+            if(res.getString("hash_passwd").equals(hashMD5(passwd))){
                this.user[0] = username;
                this.user[1] = res.getBoolean("admin");
-               this.user[2] = res.getInt("ID");
+               this.user[2] = res.getInt("id");
                return true;
             }else{
                 return false;
@@ -46,8 +46,9 @@ public class APIDB {
     
     public String[][] getArts(){
         String[][] Result=new String[100][7];
-        String id, title, content, date, author, views, category;
-        String query = "SELECT a.*, u.username, v.count, c.name from \"Article\" a JOIN users u ON u.\"ID\" = a.\"ID_Author\" LEFT JOIN views v ON v.id_art = a.\"ID\" LEFT JOIN categories c ON c.id = a.\"ID\"";
+        String id, title,  author, views, category, content,date;
+        //String query = "SELECT a.*, u.username, v.count, c.name from article a JOIN users u ON u.id = a.id_author LEFT JOIN views v ON v.id_art = a.id LEFT JOIN categories c ON c.id = a.id";
+        String query = "SELECT a.id, a.title, a.content, a.date, u.username AS author, v.count,c.name FROM article a, users u, views v, categories c WHERE  u.id = a.id_author AND c.id = a.id_category AND v.id_art = a.id;";
         ResultSet res = DB.query(query);
         try {
             for(int i=0; res.next(); i++){
@@ -55,7 +56,7 @@ public class APIDB {
                 title = res.getString("title");
                 content = res.getString("content");
                 date = res.getString("date");
-                author = res.getString("username");
+                author = res.getString("author");
                 views = res.getString("count");
                 category = res.getString("name");
                 String[] tupla={id, title, content, date, author, views, category};
@@ -68,7 +69,7 @@ public class APIDB {
     }
     public String[] read(String idART){
         String id, title, content, date, author, category;
-        String query = "SELECT art.*, author.username, categories.name from \"Article\" art, users author, categories where author.\"ID\" = art.\"ID_Author\" and categories.id = art.\"ID_category\" and art.\"ID\"="+idART;
+        String query = "SELECT art.*, author.username, categories.name from article art, users author, categories where author.id = art.id_author and categories.id = art.id_category and art.id="+idART;
         ResultSet res = DB.query(query);
         try {
             res.next();
@@ -87,7 +88,7 @@ public class APIDB {
     }
     public String[][] getComments(String idART){
         String [][] comments = new String[10][2] ;
-        String query = "SELECT username, message from users, comment WHERE id_user = \"ID\" and id_art = CAST(? AS int) LIMIT 10;";
+        String query = "SELECT username, message from users, comment WHERE id_user = id and id_art = CAST(? AS int) LIMIT 10;";
         ResultSet res = DB.query(query, new String[]{idART});
         try {
             for (int i = 0; res.next(); i++) {
@@ -101,11 +102,11 @@ public class APIDB {
         }
     }
     public void delete(String idART){
-        String query = "DELETE from \"Article\" where \"ID\"="+idART;
+        String query = "DELETE from article where id="+idART;
         DB.query(query);
     }
     public void create(String[] args){
-        String query="INSERT INTO \"Article\" (title, content, date, \"ID_Author\", \"ID_category\") VALUES(?,?,'now()', CAST(? AS int), CAST(? AS int));";
+        String query="INSERT INTO article (title, content, date, id_author, id_category) VALUES(?,?,'now()', CAST(? AS int), CAST(? AS int));";
         DB.query(query, args);
     }
     public String[] stats(){

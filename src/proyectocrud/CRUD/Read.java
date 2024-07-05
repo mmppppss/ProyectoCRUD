@@ -129,7 +129,7 @@ public class Read extends javax.swing.JFrame {
         commentArea.setEditable(false);
         commentArea.setBackground(new java.awt.Color(60, 56, 54));
         commentArea.setColumns(20);
-        commentArea.setFont(new java.awt.Font("Source Code Pro", 0, 15)); // NOI18N
+        commentArea.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         commentArea.setForeground(new java.awt.Color(235, 219, 178));
         commentArea.setLineWrap(true);
         commentArea.setRows(5);

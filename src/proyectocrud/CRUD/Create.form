@@ -61,7 +61,7 @@
                               <Component id="titleField" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="logo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="55" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -200,7 +200,7 @@
                   <Connection component="contenidoArea" name="foreground" type="property"/>
                 </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                  <Dimension value="[272, 100]"/>
+                  <Dimension value="[272, 1000]"/>
                 </Property>
               </Properties>
             </Component>

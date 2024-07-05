@@ -3,6 +3,7 @@ package proyectocrud.CRUD;
 import DB.APIDB;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -105,7 +106,7 @@ public class Create extends javax.swing.JFrame {
         contenidoArea.setForeground(getForeground());
         contenidoArea.setRows(5);
         contenidoArea.setDisabledTextColor(contenidoArea.getForeground());
-        contenidoArea.setPreferredSize(new java.awt.Dimension(272, 100));
+        contenidoArea.setPreferredSize(new java.awt.Dimension(272, 1000));
         jScrollPane1.setViewportView(contenidoArea);
 
         authorFiled.setBackground(new java.awt.Color(60, 56, 54));
@@ -138,7 +139,7 @@ public class Create extends javax.swing.JFrame {
                             .addComponent(titleField)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(logo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cancelButton)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -183,6 +184,8 @@ public class Create extends javax.swing.JFrame {
             "1",
             ""+(categoriaList.getSelectedIndex()+1)};
         api.create(args);
+        JOptionPane.showMessageDialog(rootPane, "Articulo creado.");
+        this.dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

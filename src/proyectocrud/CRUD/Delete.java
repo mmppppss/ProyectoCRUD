@@ -22,6 +22,7 @@ public class Delete extends javax.swing.JDialog {
         api=databaseAPI;
         id=idART;
         initComponents();
+        artTitle.setText(api.read(idART)[2]);
         this.setAlwaysOnTop(true);
     }
 
