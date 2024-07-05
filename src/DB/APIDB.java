@@ -14,7 +14,7 @@ import java.util.logging.Logger;
  */
 public class APIDB {
     private Database DB;
-    private Object[] user={"null", false};
+    private Object[] user={"null", false, 0};
     public APIDB() {
         DB = new Database();
         DB.Connect();
@@ -25,13 +25,14 @@ public class APIDB {
     }
     
     public boolean login(String username, String passwd){
-        String query = "SELECT \"hashPasswd\", admin FROM users where username=?;";
+        String query = "SELECT \"hashPasswd\", admin, \"ID\" FROM users where username=?;";
         ResultSet res = DB.query(query, new String[]{username});
         try {
             res.next();
             if(res.getString("hashPasswd").equals(hashMD5(passwd))){
                this.user[0] = username;
                this.user[1] = res.getBoolean("admin");
+               this.user[2] = res.getInt("ID");
                return true;
             }else{
                 return false;
@@ -44,9 +45,9 @@ public class APIDB {
     }
     
     public String[][] getArts(){
-        String[][] Result=new String[10][4];
-        String id, title, content, date, author;
-        String query = "SELECT a.*, u.username from \"Article\" a, users u where u.\"ID\" = a.\"ID_Author\";";
+        String[][] Result=new String[100][7];
+        String id, title, content, date, author, views, category;
+        String query = "SELECT a.*, u.username, v.count, c.name from \"Article\" a JOIN users u ON u.\"ID\" = a.\"ID_Author\" LEFT JOIN views v ON v.id_art = a.\"ID\" LEFT JOIN categories c ON c.id = a.\"ID\"";
         ResultSet res = DB.query(query);
         try {
             for(int i=0; res.next(); i++){
@@ -55,7 +56,9 @@ public class APIDB {
                 content = res.getString("content");
                 date = res.getString("date");
                 author = res.getString("username");
-                String[] tupla={id, title, content, date, author};
+                views = res.getString("count");
+                category = res.getString("name");
+                String[] tupla={id, title, content, date, author, views, category};
                 Result[i]=tupla;
             }
         } catch (SQLException ex) {
@@ -81,7 +84,21 @@ public class APIDB {
             String[] tupla={"-1", "NOT FOUND", "El articulo no existe", "00-00-00", "null"};
             return tupla;
         }
-        
+    }
+    public String[][] getComments(String idART){
+        String [][] comments = new String[10][2] ;
+        String query = "SELECT username, message from users, comment WHERE id_user = \"ID\" and id_art = CAST(? AS int) LIMIT 10;";
+        ResultSet res = DB.query(query, new String[]{idART});
+        try {
+            for (int i = 0; res.next(); i++) {
+                comments[i]=new String[]{res.getString(1), res.getString(2)};
+            }
+            return comments;
+        } catch (SQLException ex) {
+            Logger.getLogger(APIDB.class.getName()).log(Level.SEVERE, null, ex);
+            comments[0]= new String[]{"anom", "no hay comentarios"};
+            return comments;
+        }
     }
     public void delete(String idART){
         String query = "DELETE from \"Article\" where \"ID\"="+idART;
@@ -90,6 +107,21 @@ public class APIDB {
     public void create(String[] args){
         String query="INSERT INTO \"Article\" (title, content, date, \"ID_Author\", \"ID_category\") VALUES(?,?,'now()', CAST(? AS int), CAST(? AS int));";
         DB.query(query, args);
+    }
+    public String[] stats(){
+        String query = "SELECT (SELECT sum(count) FROM views) AS total_views, (SELECT count(*) FROM comment) AS total_comments";
+        ResultSet res = DB.query(query);
+        try {
+            res.next();
+            return new String[]{res.getString("total_views"), res.getString("total_comments")};
+        } catch (SQLException ex) {
+            Logger.getLogger(APIDB.class.getName()).log(Level.SEVERE, null, ex);
+            return new String[]{"0"};
+        }
+    }
+    public void comment(String message, String idArt){
+        String query="INSERT INTO comment values(CAST(? AS int),CAST(? AS int), ?)";
+        DB.query(query, new String[]{idArt, ""+user[2], message});
     }
     public String hashMD5(String input){
         try {

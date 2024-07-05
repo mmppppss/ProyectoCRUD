@@ -34,20 +34,24 @@ public class ReadList extends javax.swing.JFrame {
         var list = api.getArts();
         for (String[] tupla : list) {
             if(tupla[0]!=null)
-                addArticlePanel(tupla[0], tupla[1]);
+                addArticlePanel(tupla[0], tupla[1], tupla[5], tupla[6]);
         }
     }
-    private void addArticlePanel(String id, String title) {
+    private void addArticlePanel(String id, String title, String views, String cat) {
         JPanel articlePanel = new JPanel();
         articlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
-        articlePanel.setSize(655, 40);
+        articlePanel.setSize(655, 46);
         articlePanel.setPreferredSize(articlePanel.getSize());
         articlePanel.setMinimumSize(articlePanel.getSize());
         articlePanel.setMaximumSize(articlePanel.getSize());
         articlePanel.setBackground(new java.awt.Color(80, 73, 69));
-        JLabel titleLabel = new JLabel(title);
+        JLabel titleLabel = new JLabel(title+" | ");
         articlePanel.add(titleLabel);
-
+        articlePanel.add(new JLabel(cat+" | "));
+        JLabel view = new JLabel(views+" |   ");
+        //view.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png")));
+        view.setSize(1000, HEIGHT);
+        articlePanel.add(view);
         JButton viewButton = new JButton("VER");
         JButton editButton = new JButton("EDITAR");
         JButton deleteButton = new JButton("BORRAR");
@@ -59,9 +63,9 @@ public class ReadList extends javax.swing.JFrame {
         viewButton.setFocusPainted(false);
         viewButton.addActionListener((java.awt.event.ActionEvent evt) -> {
             new Read(api, id).setVisible(true);
-            System.out.println("view");
+            this.dispose();
         });
-        editButton.setBackground(new java.awt.Color(29, 32, 33));
+        editButton.setBackground(new java.awt.Color(29, 32, 33));//1D2021
         editButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         editButton.setForeground(new java.awt.Color(168, 153, 132));
         editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/edit.png"))); // NOI18N
@@ -69,6 +73,7 @@ public class ReadList extends javax.swing.JFrame {
         editButton.setFocusPainted(false);
         editButton.addActionListener((java.awt.event.ActionEvent evt) -> {
             System.out.println("edit");
+            this.dispose();
         });
         deleteButton.setBackground(new java.awt.Color(29, 32, 33));
         deleteButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N

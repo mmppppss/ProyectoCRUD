@@ -20,11 +20,17 @@ public class Gui extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         logged();
+        stats();
     }
     private void logged(){
         boolean admin = (boolean) api.getUser()[1];
         addButton.setVisible(admin);
         
+    }
+    private void stats(){
+        String[] stat = api.stats();
+        viewStat.setText(stat[0]);
+        commentStat.setText(stat[1]);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +44,9 @@ public class Gui extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         logo = new javax.swing.JLabel();
         statsPanel = new javax.swing.JPanel();
+        viewStat = new javax.swing.JLabel();
+        commentStat = new javax.swing.JLabel();
+        logo1 = new javax.swing.JLabel();
         msgPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -65,15 +74,46 @@ public class Gui extends javax.swing.JFrame {
         statsPanel.setForeground(new java.awt.Color(29, 32, 33));
         statsPanel.setPreferredSize(new java.awt.Dimension(680, 130));
 
+        viewStat.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
+        viewStat.setForeground(new java.awt.Color(235, 219, 178));
+        viewStat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png"))); // NOI18N
+        viewStat.setText("NNN");
+
+        commentStat.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
+        commentStat.setForeground(new java.awt.Color(235, 219, 178));
+        commentStat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/comment.png"))); // NOI18N
+        commentStat.setText("NNN");
+
+        logo1.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
+        logo1.setForeground(new java.awt.Color(235, 219, 178));
+        logo1.setText("Estadisticas");
+
         javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
         statsPanel.setLayout(statsPanelLayout);
         statsPanelLayout.setHorizontalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(statsPanelLayout.createSequentialGroup()
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(viewStat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(commentStat, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(statsPanelLayout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(logo1)))
+                .addContainerGap(256, Short.MAX_VALUE))
         );
         statsPanelLayout.setVerticalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(statsPanelLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(logo1)
+                .addGap(18, 18, 18)
+                .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(commentStat)
+                    .addComponent(viewStat))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         mainPanel.add(statsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 71, -1, -1));
@@ -210,12 +250,15 @@ public class Gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JLabel commentStat;
     private javax.swing.JButton listButton;
     private javax.swing.JButton loginButton;
     private javax.swing.JLabel logo;
+    private javax.swing.JLabel logo1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel msgPanel;
     private javax.swing.JPanel statsPanel;
     private javax.swing.JPanel topPanel;
+    private javax.swing.JLabel viewStat;
     // End of variables declaration//GEN-END:variables
 }

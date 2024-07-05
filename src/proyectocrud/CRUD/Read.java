@@ -33,6 +33,7 @@ public class Read extends javax.swing.JFrame {
         api=databaseAPI;
         id=idART;
         readArt();
+        showComments();
         editButton.setVisible((boolean)api.getUser()[1]);
     }
     private void readArt(){
@@ -42,6 +43,15 @@ public class Read extends javax.swing.JFrame {
         dateView.setText("FECHA: "+tupla[3]);
         authorView.setText("AUTOR: "+tupla[4]);
         categoriaView.setText("CATEGORIA: "+tupla[5]);
+    }
+    private void showComments(){
+        String msg="";
+        for(String[] tupla : api.getComments(id)){
+            if( tupla[0] != null )
+                msg= msg+tupla[0]+": "+tupla[1]+"\n\n";
+            
+        }
+        commentArea.setText(msg);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +71,10 @@ public class Read extends javax.swing.JFrame {
         editButton = new javax.swing.JButton();
         authorView = new javax.swing.JLabel();
         dateView = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        commentArea = new javax.swing.JTextArea();
+        commentField = new javax.swing.JTextField();
+        sendButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -69,6 +83,7 @@ public class Read extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(251, 241, 199));
         jPanel1.setMaximumSize(new java.awt.Dimension(720, 480));
         jPanel1.setMinimumSize(new java.awt.Dimension(720, 480));
+        jPanel1.setPreferredSize(new java.awt.Dimension(720, 480));
 
         logo.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
         logo.setForeground(new java.awt.Color(235, 219, 178));
@@ -111,29 +126,70 @@ public class Read extends javax.swing.JFrame {
         dateView.setForeground(new java.awt.Color(235, 219, 178));
         dateView.setText("DATE");
 
+        commentArea.setEditable(false);
+        commentArea.setBackground(new java.awt.Color(60, 56, 54));
+        commentArea.setColumns(20);
+        commentArea.setFont(new java.awt.Font("Source Code Pro", 0, 15)); // NOI18N
+        commentArea.setForeground(new java.awt.Color(235, 219, 178));
+        commentArea.setLineWrap(true);
+        commentArea.setRows(5);
+        jScrollPane2.setViewportView(commentArea);
+
+        commentField.setBackground(new java.awt.Color(60, 56, 54));
+        commentField.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        commentField.setToolTipText("Titulo del Articulo");
+        commentField.setOpaque(true);
+        commentField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                commentFieldActionPerformed(evt);
+            }
+        });
+
+        sendButton.setBackground(new java.awt.Color(29, 32, 33));
+        sendButton.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        sendButton.setForeground(new java.awt.Color(168, 153, 132));
+        sendButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/send.png"))); // NOI18N
+        sendButton.setFocusPainted(false);
+        sendButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(logo)
-                        .addGap(0, 218, Short.MAX_VALUE)
-                        .addComponent(editButton))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(authorView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(dateView, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(titleView, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(categoriaView, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(commentField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(sendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(logo)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(editButton))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(authorView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(dateView, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 10, Short.MAX_VALUE)
+                                .addComponent(titleView, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(categoriaView, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(14, 14, 14)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,8 +207,15 @@ public class Read extends javax.swing.JFrame {
                     .addComponent(authorView)
                     .addComponent(dateView))
                 .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sendButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(commentField))))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -163,6 +226,14 @@ public class Read extends javax.swing.JFrame {
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_editButtonActionPerformed
+
+    private void commentFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_commentFieldActionPerformed
+
+    private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
+        api.comment(commentField.getText(), id);
+    }//GEN-LAST:event_sendButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,12 +273,16 @@ public class Read extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel authorView;
     private javax.swing.JLabel categoriaView;
+    private javax.swing.JTextArea commentArea;
+    private javax.swing.JTextField commentField;
     private javax.swing.JTextArea contenidoArea;
     private javax.swing.JLabel dateView;
     private javax.swing.JButton editButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel logo;
+    private javax.swing.JButton sendButton;
     private javax.swing.JLabel titleView;
     // End of variables declaration//GEN-END:variables
 }
