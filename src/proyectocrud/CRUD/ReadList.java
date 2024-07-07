@@ -45,11 +45,15 @@ public class ReadList extends javax.swing.JFrame {
         articlePanel.setMinimumSize(articlePanel.getSize());
         articlePanel.setMaximumSize(articlePanel.getSize());
         articlePanel.setBackground(new java.awt.Color(80, 73, 69));
+        if(title.length()>30)
+            title=title.substring(0, 30);
         JLabel titleLabel = new JLabel(title+" | ");
         titleLabel.setSize(100, 40);
+        titleLabel.setForeground(new java.awt.Color(235, 219, 178));
         articlePanel.add(titleLabel);
         articlePanel.add(new JLabel(cat.replaceAll(" ", "")+" | "));
         JLabel view = new JLabel(views+" | ");
+        view.setForeground(new java.awt.Color(235, 219, 178));
         //view.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/view.png")));
         view.setSize(1000, HEIGHT);
         articlePanel.add(view);
@@ -73,7 +77,9 @@ public class ReadList extends javax.swing.JFrame {
         editButton.setText("EDITAR");
         editButton.setFocusPainted(false);
         editButton.addActionListener((java.awt.event.ActionEvent evt) -> {
-            System.out.println("edit");
+            Create edit = new Create(api);
+            edit.edit(id);
+            edit.setVisible(true);
             this.dispose();
         });
         deleteButton.setBackground(new java.awt.Color(29, 32, 33));
@@ -139,6 +145,7 @@ public class ReadList extends javax.swing.JFrame {
         });
 
         scrollPanel.setBackground(new java.awt.Color(60, 56, 54));
+        scrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scrollPanel.setPreferredSize(new java.awt.Dimension(680, 640));
 
         mainPanel.setBackground(new java.awt.Color(60, 56, 54));

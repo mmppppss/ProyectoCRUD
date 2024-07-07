@@ -43,6 +43,11 @@ public class APIDB {
         }
         return false;
     }
+    public void creteUser(String username, String passwd){
+        String hashpasswd= hashMD5(passwd);
+        String query = "INSERT INTO users(username, hash_passwd) values(?, ?)";
+        DB.query(query, new String[]{username, hashpasswd});
+    }
     
     public String[][] getArts(){
         String[][] Result=new String[100][7];
@@ -109,12 +114,16 @@ public class APIDB {
         String query="INSERT INTO article (title, content, date, id_author, id_category) VALUES(?,?,'now()', CAST(? AS int), CAST(? AS int));";
         DB.query(query, args);
     }
+    public void update(String[] args, String id){
+        String query="UPDATE article SET title=?, content=?, date='now()', id_author=CAST(? AS int), id_category=CAST(? AS int) WHERE id="+id;
+        DB.query(query,args);
+    }
     public String[] stats(){
-        String query = "SELECT (SELECT sum(count) FROM views) AS total_views, (SELECT count(*) FROM comment) AS total_comments";
+        String query = "SELECT (SELECT sum(count) FROM views) AS total_views, (SELECT count(*) FROM comment) AS total_comments, (SELECT count(*) FROM article) AS total_arts";
         ResultSet res = DB.query(query);
         try {
             res.next();
-            return new String[]{res.getString("total_views"), res.getString("total_comments")};
+            return new String[]{res.getString("total_views"), res.getString("total_comments"), res.getString("total_arts")};
         } catch (SQLException ex) {
             Logger.getLogger(APIDB.class.getName()).log(Level.SEVERE, null, ex);
             return new String[]{"0"};

@@ -19,6 +19,7 @@ public class Gui extends javax.swing.JFrame {
 
         initComponents();
         setResizable(false);
+        setLocationRelativeTo(null);
         logged();
         stats();
     }
@@ -31,6 +32,7 @@ public class Gui extends javax.swing.JFrame {
         String[] stat = api.stats();
         viewStat.setText(stat[0]);
         commentStat.setText(stat[1]);
+        artsStat.setText(stat[2]);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +49,7 @@ public class Gui extends javax.swing.JFrame {
         viewStat = new javax.swing.JLabel();
         commentStat = new javax.swing.JLabel();
         logo1 = new javax.swing.JLabel();
+        artsStat = new javax.swing.JLabel();
         msgPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
         loginButton = new javax.swing.JButton();
@@ -88,6 +91,11 @@ public class Gui extends javax.swing.JFrame {
         logo1.setForeground(new java.awt.Color(235, 219, 178));
         logo1.setText("Estadisticas");
 
+        artsStat.setFont(new java.awt.Font("Source Code Pro Black", 0, 24)); // NOI18N
+        artsStat.setForeground(new java.awt.Color(235, 219, 178));
+        artsStat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/list.png"))); // NOI18N
+        artsStat.setText("NNN");
+
         javax.swing.GroupLayout statsPanelLayout = new javax.swing.GroupLayout(statsPanel);
         statsPanel.setLayout(statsPanelLayout);
         statsPanelLayout.setHorizontalGroup(
@@ -95,14 +103,16 @@ public class Gui extends javax.swing.JFrame {
             .addGroup(statsPanelLayout.createSequentialGroup()
                 .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(viewStat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(commentStat, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(statsPanelLayout.createSequentialGroup()
                         .addGap(256, 256, 256)
-                        .addComponent(logo1)))
-                .addContainerGap(256, Short.MAX_VALUE))
+                        .addComponent(logo1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, statsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(viewStat, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59)
+                        .addComponent(commentStat, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(61, 61, 61)
+                .addComponent(artsStat, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         statsPanelLayout.setVerticalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -112,7 +122,8 @@ public class Gui extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(commentStat)
-                    .addComponent(viewStat))
+                    .addComponent(viewStat)
+                    .addComponent(artsStat))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
@@ -250,6 +261,7 @@ public class Gui extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JLabel artsStat;
     private javax.swing.JLabel commentStat;
     private javax.swing.JButton listButton;
     private javax.swing.JButton loginButton;

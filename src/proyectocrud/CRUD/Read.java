@@ -137,6 +137,7 @@ public class Read extends javax.swing.JFrame {
 
         commentField.setBackground(new java.awt.Color(60, 56, 54));
         commentField.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        commentField.setForeground(new java.awt.Color(235, 219, 178));
         commentField.setToolTipText("Titulo del Articulo");
         commentField.setOpaque(true);
         commentField.addActionListener(new java.awt.event.ActionListener() {

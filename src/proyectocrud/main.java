@@ -12,7 +12,7 @@ public class main {
         
         APIDB api = new APIDB();
         //System.out.println(api.hashMD5("222106867mps"));
-        //api.login("mmppppss", "222106867mps");
+        api.login("mmppppss", "222106867mps");
         new Gui(api).setVisible(true);
         
     }

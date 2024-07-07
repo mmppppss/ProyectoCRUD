@@ -22,7 +22,10 @@ public class Delete extends javax.swing.JDialog {
         api=databaseAPI;
         id=idART;
         initComponents();
-        artTitle.setText(api.read(idART)[2]);
+        String title=api.read(idART)[1];
+        if(title.length()>30)
+            title=title.substring(0, 30);
+        artTitle.setText(title);
         this.setAlwaysOnTop(true);
     }
 
@@ -42,7 +45,7 @@ public class Delete extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(29, 32, 33));
+        setBackground(new java.awt.Color(40, 40, 40));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         cancelButton.setBackground(new java.awt.Color(29, 32, 33));

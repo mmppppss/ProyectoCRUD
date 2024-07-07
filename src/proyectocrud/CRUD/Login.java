@@ -7,6 +7,7 @@ package proyectocrud.CRUD;
 import DB.APIDB;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import proyectocrud.Gui;
@@ -50,6 +51,7 @@ public class Login extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         login = new javax.swing.JButton();
         pass = new javax.swing.JTextField();
+        createUser = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(40, 40, 40));
@@ -80,7 +82,7 @@ public class Login extends javax.swing.JDialog {
         login.setBackground(new java.awt.Color(29, 32, 33));
         login.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
         login.setForeground(new java.awt.Color(168, 153, 132));
-        login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/save.png"))); // NOI18N
+        login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/icon_user.png"))); // NOI18N
         login.setText("INICIAR SESION");
         login.setFocusPainted(false);
         login.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +97,18 @@ public class Login extends javax.swing.JDialog {
         pass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passActionPerformed(evt);
+            }
+        });
+
+        createUser.setBackground(new java.awt.Color(29, 32, 33));
+        createUser.setFont(new java.awt.Font("Source Code Pro", 0, 14)); // NOI18N
+        createUser.setForeground(new java.awt.Color(168, 153, 132));
+        createUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyectocrud/assets/save.png"))); // NOI18N
+        createUser.setText("Crear Usuario");
+        createUser.setFocusPainted(false);
+        createUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createUserActionPerformed(evt);
             }
         });
 
@@ -120,7 +134,9 @@ public class Login extends javax.swing.JDialog {
                 .addContainerGap(54, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(login)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(createUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(100, 100, 100))
         );
         jPanel1Layout.setVerticalGroup(
@@ -138,7 +154,9 @@ public class Login extends javax.swing.JDialog {
                     .addComponent(jLabel3))
                 .addGap(37, 37, 37)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(createUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -170,6 +188,15 @@ public class Login extends javax.swing.JDialog {
     private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passActionPerformed
+
+    private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
+        String username = user.getText();
+        String password = pass.getText();
+        if(username!="" && password!=""){
+            api.creteUser(username, password);
+            JOptionPane.showMessageDialog(null, "Usuario Creado");
+        }
+    }//GEN-LAST:event_createUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -214,6 +241,7 @@ public class Login extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

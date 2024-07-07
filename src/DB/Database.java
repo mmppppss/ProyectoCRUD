@@ -48,6 +48,7 @@ public class Database {
                 System.out.println("Parsing: "+i+" "+args[i]);
                 stmt.setString(i+1, args[i]);
             }
+            System.out.println(stmt.toString());
             ResultSet rs = stmt.executeQuery();
             return rs;
         } catch (SQLException ex) {

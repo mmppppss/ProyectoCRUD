@@ -13,6 +13,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class Create extends javax.swing.JFrame {
     APIDB api;
+    boolean isEdit=false;
+    String id="";
     public Create(APIDB databaseAPI) {
         api= databaseAPI;
         
@@ -35,6 +37,16 @@ public class Create extends javax.swing.JFrame {
         authorFiled.setText((String) api.getUser()[0]);
         descripcionField.setText("Descripcion");
         
+    }
+    
+    public void edit(String id){
+        isEdit=true;
+        String[] tupla=api.read(id);
+        this.id=id;
+        titleField.setText(tupla[1]);
+        contenidoArea.setText(tupla[2]);
+        authorFiled.setText(tupla[4]);
+        categoriaList.setSelectedItem(tupla[5]);
     }
 
     /**
@@ -178,12 +190,15 @@ public class Create extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        System.out.println();
+        
         String[] args={titleField.getText(),
             contenidoArea.getText(),
             "1",
             ""+(categoriaList.getSelectedIndex()+1)};
-        api.create(args);
+        if(!isEdit)
+            api.create(args);
+        else
+            api.update(args, id);
         JOptionPane.showMessageDialog(rootPane, "Articulo creado.");
         this.dispose();
     }//GEN-LAST:event_saveButtonActionPerformed
