@@ -225,7 +225,10 @@ public class Read extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
-        // TODO add your handling code here:
+        Create edit = new Create(api);
+        edit.edit(id);
+        edit.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_editButtonActionPerformed
 
     private void commentFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentFieldActionPerformed
