@@ -27,6 +27,7 @@ public class Delete extends javax.swing.JDialog {
             title=title.substring(0, 30);
         artTitle.setText(title);
         this.setAlwaysOnTop(true);
+        setLocationRelativeTo(null);
     }
 
     /**

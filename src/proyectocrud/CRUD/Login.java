@@ -33,6 +33,7 @@ public class Login extends javax.swing.JDialog {
         }
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -180,9 +181,15 @@ public class Login extends javax.swing.JDialog {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         String username = user.getText();
         String password = pass.getText();
-        api.login(username, password);
-        this.dispose();
-        new Gui(api).setVisible(true);
+        if(username.isEmpty() || password.isEmpty())
+            JOptionPane.showMessageDialog(rootPane, "Ingrese un usuario");
+        else{
+            if(api.login(username, password)){
+                this.dispose();
+                new Gui(api).setVisible(true);
+            }else
+                JOptionPane.showMessageDialog(rootPane, "Usuario o contraseña no valido");
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
@@ -192,9 +199,11 @@ public class Login extends javax.swing.JDialog {
     private void createUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createUserActionPerformed
         String username = user.getText();
         String password = pass.getText();
-        if(username!="" && password!=""){
-            api.creteUser(username, password);
-            JOptionPane.showMessageDialog(null, "Usuario Creado");
+        if(username.isEmpty() || password.isEmpty())
+            JOptionPane.showMessageDialog(rootPane, "Ingrese un usuario o contraseña");
+        else{
+            api.createUser(username, password);
+            JOptionPane.showMessageDialog(rootPane,"Usuario "+username+" creado, ya puede iniciar sesion");
         }
     }//GEN-LAST:event_createUserActionPerformed
 

@@ -7,6 +7,7 @@ import java.sql.*;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,12 +29,15 @@ public class APIDB {
         String query = "SELECT hash_passwd, admin, id FROM users where username=?;";
         ResultSet res = DB.query(query, new String[]{username});
         try {
-            res.next();
-            if(res.getString("hash_passwd").equals(hashMD5(passwd))){
-               this.user[0] = username;
-               this.user[1] = res.getBoolean("admin");
-               this.user[2] = res.getInt("id");
-               return true;
+            if(res.next()){
+                if(res.getString("hash_passwd").equals(hashMD5(passwd))){
+                    this.user[0] = username;
+                    this.user[1] = res.getBoolean("admin");
+                    this.user[2] = res.getInt("id");
+                    return true;
+                }else{
+                    return false;
+                }
             }else{
                 return false;
             }
@@ -43,10 +47,11 @@ public class APIDB {
         }
         return false;
     }
-    public void creteUser(String username, String passwd){
+    public void createUser(String username, String passwd){
         String hashpasswd= hashMD5(passwd);
         String query = "INSERT INTO users(username, hash_passwd) values(?, ?)";
         DB.query(query, new String[]{username, hashpasswd});
+        
     }
     
     public String[][] getArts(){
@@ -75,6 +80,8 @@ public class APIDB {
     public String[] read(String idART){
         String id, title, content, date, author, category;
         String query = "SELECT art.*, author.username, categories.name from article art, users author, categories where author.id = art.id_author and categories.id = art.id_category and art.id="+idART;
+        String query2 = "UPDATE views SET count = count + 1 WHERE id_art ="+idART;
+        DB.query(query2);
         ResultSet res = DB.query(query);
         try {
             res.next();
@@ -92,7 +99,7 @@ public class APIDB {
         }
     }
     public String[][] getComments(String idART){
-        String [][] comments = new String[10][2] ;
+        String [][] comments = new String[100][2] ;
         String query = "SELECT username, message from users, comment WHERE id_user = id and id_art = CAST(? AS int) LIMIT 10;";
         ResultSet res = DB.query(query, new String[]{idART});
         try {

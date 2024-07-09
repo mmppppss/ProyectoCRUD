@@ -11,8 +11,6 @@ public class main {
     public static void main(String[] args) {
         
         APIDB api = new APIDB();
-        //System.out.println(api.hashMD5("222106867mps"));
-        api.login("mmppppss", "222106867mps");
         new Gui(api).setVisible(true);
         
     }

@@ -36,7 +36,7 @@ public class Create extends javax.swing.JFrame {
         contenidoArea.setText("Contenido");
         authorFiled.setText((String) api.getUser()[0]);
         descripcionField.setText("Descripcion");
-        
+        setLocationRelativeTo(null);
     }
     
     public void edit(String id){

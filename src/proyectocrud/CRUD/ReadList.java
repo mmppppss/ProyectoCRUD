@@ -29,6 +29,7 @@ public class ReadList extends javax.swing.JFrame {
         mainPanel.setLayout(a);
         addButton.setVisible((boolean)api.getUser()[1]);
         makelist();
+        setLocationRelativeTo(null);
     }
     private void makelist(){
         var list = api.getArts();

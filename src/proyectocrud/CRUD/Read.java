@@ -35,6 +35,7 @@ public class Read extends javax.swing.JFrame {
         readArt();
         showComments();
         editButton.setVisible((boolean)api.getUser()[1]);
+        setLocationRelativeTo(null);
     }
     private void readArt(){
         String[] tupla=api.read(id);
@@ -237,6 +238,9 @@ public class Read extends javax.swing.JFrame {
 
     private void sendButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendButtonActionPerformed
         api.comment(commentField.getText(), id);
+        this.dispose();
+        new Read(api, id).setVisible(true);
+        
     }//GEN-LAST:event_sendButtonActionPerformed
 
     /**
