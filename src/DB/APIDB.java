@@ -120,6 +120,16 @@ public class APIDB {
     public void create(String[] args){
         String query="INSERT INTO article (title, content, date, id_author, id_category) VALUES(?,?,'now()', CAST(? AS int), CAST(? AS int));";
         DB.query(query, args);
+        ResultSet a=DB.query("SELECT id from article order by id desc limit 1");
+        try {
+            a.next();
+            String id=a.getString("id");
+            String query3="INSERT INTO views (id_art, count) VALUES ("+id+", 0);";
+            DB.query(query3);
+        } catch (SQLException ex) {
+            Logger.getLogger(APIDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
     public void update(String[] args, String id){
         String query="UPDATE article SET title=?, content=?, date='now()', id_author=CAST(? AS int), id_category=CAST(? AS int) WHERE id="+id;

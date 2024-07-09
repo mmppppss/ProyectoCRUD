@@ -34,11 +34,14 @@ public class ReadList extends javax.swing.JFrame {
     private void makelist(){
         var list = api.getArts();
         for (String[] tupla : list) {
-            if(tupla[0]!=null)
+            if(tupla[0]!=null){
                 addArticlePanel(tupla[0], tupla[1], tupla[5], tupla[6]);
+            }
+           
         }
     }
     private void addArticlePanel(String id, String title, String views, String cat) {
+        System.out.println("add "+title);
         JPanel articlePanel = new JPanel();
         articlePanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         articlePanel.setSize(655, 46);
@@ -146,13 +149,13 @@ public class ReadList extends javax.swing.JFrame {
         });
 
         scrollPanel.setBackground(new java.awt.Color(60, 56, 54));
-        scrollPanel.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        scrollPanel.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPanel.setPreferredSize(new java.awt.Dimension(680, 640));
 
         mainPanel.setBackground(new java.awt.Color(60, 56, 54));
-        mainPanel.setMaximumSize(new java.awt.Dimension(670, 670));
+        mainPanel.setMaximumSize(new java.awt.Dimension(670, 1970));
         mainPanel.setMinimumSize(new java.awt.Dimension(670, 50));
-        mainPanel.setPreferredSize(new java.awt.Dimension(670, 653));
+        mainPanel.setPreferredSize(new java.awt.Dimension(670, 1970));
         scrollPanel.setViewportView(mainPanel);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
