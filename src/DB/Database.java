@@ -13,7 +13,7 @@ public class Database {
     private final String host = "motty.db.elephantsql.com",
             db="vamigkmd",
             username="vamigkmd",
-            passwd="W5pyEwXY_0CdfIJb-Y-nqr1Tw3w_zEbK",
+            passwd="passwd",
             url="jdbc:postgresql://"+host+"/"+db;
     private Connection con=null;
     public Database() {
